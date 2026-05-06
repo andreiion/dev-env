@@ -1,3 +1,4 @@
+require("anion.set")
 require("anion.remap")
 require("anion.lazy_init")
 
