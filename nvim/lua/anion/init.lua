@@ -2,4 +2,5 @@ require("anion.set")
 require("anion.remap")
 require("anion.lazy_init")
 
-print("hello from inside the andion folder")
+vim.lsp.config("ruff", require("anion.lsp.ruff"))
+vim.lsp.enable("ruff")

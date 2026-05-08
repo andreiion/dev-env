@@ -1,0 +1,17 @@
+[user]
+    name = Andrei Ion
+    #email = <>
+    #username = <>
+
+[core]
+    editor = vim
+
+
+[alias]
+    br = branch -vvv
+
+[diff]
+    algorithm = histogram
+    colorMoved = plain
+    tool = vimdiff
+    

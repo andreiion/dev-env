@@ -1,18 +1,12 @@
 
-vim.opt.nu = true
+vim.opt.guicursor = "" -- similar to set cursorline
 
+vim.opt.nu = true     -- display line numbers
 vim.opt.tabstop = 4
-vim.opt.softtabstop = 0
+vim.opt.softtabstop = 4
 vim.opt.shiftwidth = 4
---When expandtab is set => tab = x spaces
-vim.opt.expandtab = true
-
+vim.opt.expandtab = true --When expandtab is set => tab = x spaces
 vim.opt.smartindent = true
-
-
-vim.opt.swapfile = false
-
-
 vim.opt.colorcolumn = "80"
 -- Mark tabs and spaces
 --set list listchars=tab:»\ ,trail:·,extends:»,precedes:«
@@ -24,12 +18,24 @@ vim.opt.listchars = {
   precedes = "«",
 }
 
+vim.opt.swapfile = false
+vim.opt.backup = false
+vim.opt.undodir = os.getenv("HOME") .. "/.vim/undodir"
+vim.opt.undofile = true -- save undo history to an undo file
+
+vim.opt.hlsearch = false
+vim.opt.incsearch = true
+
+vim.opt.termguicolors = true
+
+vim.opt.updatetime = 50 -- save file after 50msec if nothing is typed
+
+vim.opt.scrolloff = 8 -- context lines above and below the cursor
 
 --vim.api.nvim_create_autocmd("BufWritePre", {
 --  pattern = "*",
 --  command = [[%s/\s\+$//e]],
 --})
-
 vim.api.nvim_create_autocmd("BufWritePre", {
   pattern = "*",
   callback = function()
@@ -38,3 +44,7 @@ vim.api.nvim_create_autocmd("BufWritePre", {
     vim.fn.winrestview(view)
   end,
 })
+
+
+
+
