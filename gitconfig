@@ -4,7 +4,7 @@
     #username = <>
 
 [core]
-    editor = vim
+    editor = nvim
 
 
 [alias]
@@ -14,4 +14,4 @@
     algorithm = histogram
     colorMoved = plain
     tool = vimdiff
-    
+

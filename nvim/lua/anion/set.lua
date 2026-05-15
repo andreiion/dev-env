@@ -32,6 +32,7 @@ vim.opt.updatetime = 50 -- save file after 50msec if nothing is typed
 
 vim.opt.scrolloff = 8 -- context lines above and below the cursor
 
+--remove trailing whitespace from all file types
 --vim.api.nvim_create_autocmd("BufWritePre", {
 --  pattern = "*",
 --  command = [[%s/\s\+$//e]],
