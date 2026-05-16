@@ -8,6 +8,8 @@ vim.opt.shiftwidth = 4
 vim.opt.expandtab = true --When expandtab is set => tab = x spaces
 vim.opt.smartindent = true
 vim.opt.colorcolumn = "80"
+vim.opt.signcolumn = "yes" --reserves signcolumn, so error icons can appear without pushing the buffer text sideways
+
 -- Mark tabs and spaces
 --set list listchars=tab:»\ ,trail:·,extends:»,precedes:«
 vim.opt.list = true
@@ -46,6 +48,5 @@ vim.api.nvim_create_autocmd("BufWritePre", {
   end,
 })
 
-
-
+vim.opt.winborder = "rounded" --default winborder for all floating windows
 
