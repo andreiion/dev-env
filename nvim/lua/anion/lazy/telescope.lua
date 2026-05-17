@@ -11,12 +11,18 @@ return {
 
     config = function()
         local builtin = require('telescope.builtin')
-
-        vim.keymap.set('n', '<leader>pf', builtin.find_files, {}) --project find
-        vim.keymap.set('n', '<C-p>', builtin.git_files, {}) --project git search
-        vim.keymap.set('n', '<leader>F', function()
-            builtin.grep_string({ search = vim.fn.input("Grep > ") });
-        end) --project search
-
-    end
+        local keymap = vim.keymap
+        keymap.set('n', '<leader>ff', builtin.find_files, {desc = "Grep Project" })
+        keymap.set('n', '<leader>fg', builtin.live_grep, {desc = ""})
+        keymap.set('n', '<leader>fb', builtin.buffers, {desc = "Grep Project"})
+        keymap.set('n', '<leader>fh', builtin.help_tags, {desc = "Help"})
+        keymap.set('n', '<leader>fs', builtin.lsp_document_symbols, {desc = "Symbols"})
+        keymap.set('n', '<leader>fd', builtin.diagnostics, {desc = "Diagnostics"})
+        keymap.set('n', '<leader>fr', builtin.oldfiles, {desc = "Recent files"})
+        keymap.set("n", "<leader>fc", builtin.grep_string, { desc = "Find string under cursor in cwd" })
+        keymap.set('n', '<C-p>', builtin.git_files, {})
+       -- keymap.set('n', '<leader>fg', function()
+       --     builtin.grep_string({ search = vim.fn.input("Grep > ") });
+       -- end) --project search
+    end,
 }

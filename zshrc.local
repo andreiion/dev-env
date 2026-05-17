@@ -1,0 +1,13 @@
+# Only run in interactive shells
+[[ $- != *i* ]] && return
+
+# Do not start tmux inside tmux
+[[ -n "$TMUX" ]] && return
+
+# Do not start tmux on remote machines
+[[ -n "$SSH_TTY" ]] && return
+
+# Start or attach to a persistent session
+if command -v tmux >/dev/null 2>&1; then
+  exec tmux new-session -A -s main
+fi
