@@ -48,5 +48,13 @@ vim.api.nvim_create_autocmd("BufWritePre", {
   end,
 })
 
+--vim.api.nvim_create_autocmd("VimResized", {
+--    callback = function ()
+--        vim.cmd("wincmd =")
+--        print("window was rezied")
+--    end,
+--})
+
+
 vim.opt.winborder = "rounded" --default winborder for all floating windows
 

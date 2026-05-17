@@ -4,7 +4,9 @@ return {
         local codediff = require("codediff")
         codediff.setup({
             explorer = {
+                position = "bottom",
                 width = 30,
+                height = 10,
             }
         })
     end

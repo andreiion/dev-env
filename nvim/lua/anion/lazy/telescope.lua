@@ -1,5 +1,6 @@
 return {
-    'nvim-telescope/telescope.nvim', version = '*',
+    'nvim-telescope/telescope.nvim',
+    version = '*',
     dependencies = {
         'nvim-lua/plenary.nvim',
         --'BurntSushi/ripgrep', --required for live_grep and grep_string and is the first priority for find_files

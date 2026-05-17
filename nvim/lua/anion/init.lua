@@ -7,8 +7,6 @@ vim.g.netrw_banner = 0
 vim.g.netrw_liststyle = 3 --tree
 vim.g.netrw_winsize = 25
 
-vim.cmd("syntax on")
-vim.cmd("filetype plugin indent on")
 
 --TODO: LSP stuff. I want them moved to their own file for better structure
 vim.api.nvim_create_autocmd('LspAttach', {
@@ -76,3 +74,4 @@ vim.lsp.config("pyrefly", require("anion.lsp.pyrefly"))
 vim.lsp.enable("pyrefly")
 vim.lsp.config("clangd", require("anion.lsp.clangd"))
 vim.lsp.enable("clangd")
+
