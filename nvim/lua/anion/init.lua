@@ -53,3 +53,35 @@ vim.lsp.enable("pyrefly")
 vim.lsp.config("clangd", require("anion.lsp.clangd"))
 vim.lsp.enable("clangd")
 
+--TODO: markdown support. Want to remove it later
+vim.api.nvim_create_autocmd("FileType", {
+    pattern = "markdown",
+    callback = function()
+        vim.opt_local.conceallevel = 2
+        vim.opt_local.concealcursor = "nc"
+
+        vim.opt_local.wrap = true
+        vim.opt_local.linebreak = true
+        vim.opt_local.breakindent = true
+
+        vim.opt_local.spell = true
+        vim.opt_local.spelllang = { "en" }
+
+        vim.opt_local.foldmethod = "syntax"
+        vim.opt_local.foldlevel = 99
+
+        vim.opt_local.textwidth = 80
+        vim.opt_local.colorcolumn = "81"
+
+        vim.keymap.set("n", "j", "gj", { buffer = true, silent = true })
+        vim.keymap.set("n", "k", "gk", { buffer = true, silent = true })
+
+        vim.keymap.set("n", "<leader>mc", function()
+            if vim.opt_local.conceallevel:get() == 0 then
+                vim.opt_local.conceallevel = 2
+            else
+                vim.opt_local.conceallevel = 0
+            end
+        end, { buffer = true, desc = "Toggle markdown conceal" })
+    end,
+})
