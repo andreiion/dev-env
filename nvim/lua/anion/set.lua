@@ -58,3 +58,6 @@ vim.api.nvim_create_autocmd("BufWritePre", {
 
 vim.opt.winborder = "rounded" --default winborder for all floating windows
 
+-- clipboard
+vim.g.clipboard = "osc52" -- use system clipboard as default register
+vim.opt.clipboard:append("unnamedplus")
