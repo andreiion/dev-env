@@ -20,7 +20,6 @@ append_if_missing() {
 
 neovim_install_stable ()
 {
-
     #TODO: Use nicer  method to detect arch. For example:
     #os="$(uname -s)"
     #arch="$(uname -m)"
