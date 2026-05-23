@@ -1,38 +1,53 @@
-vim.opt.guicursor = "" -- similar to set cursorline
+local opt = vim.opt
 
-vim.opt.nu = true
-vim.opt.tabstop = 4
-vim.opt.softtabstop = 4
-vim.opt.shiftwidth = 4
-vim.opt.expandtab = true -- when expandtab is set => tab = x spaces
-vim.opt.smartindent = true
-vim.opt.colorcolumn = "80"
-vim.opt.signcolumn = "yes" -- reserves signcolumn, so error icons can appear without pushing the buffer text sideways
+opt.guicursor = "" -- similar to set cursorline
+opt.termguicolors = true
+
+opt.winborder = "rounded" --winborder for floating windows
+
+opt.number = true
+opt.relativenumber = true
+opt.scrolloff = 8 -- context lines above and below the cursor
+
+opt.tabstop = 4
+opt.softtabstop = 4
+opt.shiftwidth = 4
+opt.expandtab = true -- when expandtab is set => tab = x spaces
+opt.smartindent = true
+
+opt.formatoptions:remove "o" --don't let `o` add a comment
+
+opt.colorcolumn = "80"
+opt.signcolumn = "yes" -- reserves signcolumn, so error icons can appear without pushing the buffer text sideways
+
+opt.shada = {
+  "'10", -- remember marks for last 10 files
+  "<0", -- disable register persistence
+  "s10", -- skip registers larger than 10KB
+  "h"   -- disabled restoring search highlight on startup
+}
 
 -- Mark tabs and spaces
 --set list listchars=tab:»\ ,trail:·,extends:»,precedes:«
-vim.opt.list = true
-vim.opt.listchars = {
+opt.list = true
+opt.listchars = {
   tab = "» ",
   trail = "·",
   extends = "»",
   precedes = "«",
 }
 
-vim.opt.swapfile = false
-vim.opt.backup = false
-vim.opt.undodir = os.getenv("HOME") .. "/.vim/undodir"
-vim.opt.undofile = true -- save undo history to an undo file
+opt.swapfile = false
+opt.backup = false
+opt.undodir = os.getenv("HOME") .. "/.vim/undodir"
+opt.undofile = true -- save undo history to an undo file
+opt.updatetime = 50 -- save swap file after 50msec if nothing is typed
 
-vim.opt.hlsearch = false
-vim.opt.incsearch = true
-
-vim.opt.termguicolors = true
-
-vim.opt.updatetime = 50 -- save swap file after 50msec if nothing is typed
-
-
-vim.opt.scrolloff = 8 -- context lines above and below the cursor
+-- Search settings
+opt.hlsearch = false
+opt.incsearch = true
+opt.smartcase = true
+opt.ignorecase = true
 
 --remove trailing whitespace from all file types
 vim.api.nvim_create_autocmd("BufWritePre", {
@@ -44,11 +59,9 @@ vim.api.nvim_create_autocmd("BufWritePre", {
   end,
 })
 
-vim.opt.winborder = "rounded" --default winborder for all floating windows
-
 -- clipboard
 vim.g.clipboard = "osc52" -- use system clipboard as default register
-vim.opt.clipboard:append("unnamedplus")
+opt.clipboard:append("unnamedplus")
 
 vim.g.loaded_python3_provider = 0
 vim.g.loaded_ruby_provider = 0
