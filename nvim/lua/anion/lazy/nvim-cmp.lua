@@ -1,15 +1,15 @@
 return {
-    'saghen/blink.cmp',
+    "saghen/blink.cmp",
     -- use a release tag to download pre-built binaries
-    version = '1.*',
+    version = "1.*",
     -- optional: provides snippets for the snippet source
-    dependencies = { 'rafamadriz/friendly-snippets' },
+    dependencies = { "rafamadriz/friendly-snippets" },
     config = function()
         require("blink.cmp").setup({
-            -- 'default' (recommended) for mappings similar to built-in completions (C-y to accept)
-            -- 'super-tab' for mappings similar to vscode (tab to accept)
-            -- 'enter' for enter to accept
-            -- 'none' for no mappings
+            -- "default" (recommended) for mappings similar to built-in completions (C-y to accept)
+            -- "super-tab" for mappings similar to vscode (tab to accept)
+            -- "enter" for enter to accept
+            -- "none" for no mappings
 
             -- All presets have the following mappings:
             -- C-space: Open menu or open docs if already open
@@ -22,9 +22,9 @@ return {
                 preset = "default",
             },
             appearance = {
-                -- 'mono' (default) for 'Nerd Font Mono' or 'normal' for 'Nerd Font'
+                -- "mono" (default) for "Nerd Font Mono" or "normal" for "Nerd Font"
                 -- Adjusts spacing to ensure icons are aligned
-                nerd_font_variant = 'mono'
+                nerd_font_variant = "mono"
             },
             completion = {
                 documentation = { auto_show = true },

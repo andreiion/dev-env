@@ -7,7 +7,7 @@
 # Do not start tmux on remote machines
 [[ -n "$SSH_TTY" ]] && return
 
-alias vim='nvim'
+alias vim="nvim"
 
 # Start or attach to a persistent session
 if command -v tmux >/dev/null 2>&1; then

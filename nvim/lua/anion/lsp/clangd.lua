@@ -1,6 +1,6 @@
 return {
-    cmd = { 'clangd',},
-    root_markers = { '.clangd', 'compile_commands.json' },
+    cmd = { "clangd",},
+    root_markers = { ".clangd", "compile_commands.json" },
 
-    filetypes = { 'c', 'cpp' },
+    filetypes = { "c", "cpp" },
 }

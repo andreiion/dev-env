@@ -5,15 +5,17 @@ function ColorScheme(color)
 
 end
 
+--TODO: add cursor line highlighting
+--on_highlights = function(hl, c)
+--    hl.CursorLineNr = { fg = c.orange, bold = true }
+--end,
 return {
     {
         "shaunsingh/nord.nvim",
         lazy = false,
         priority = 1000,
         config = function()
-            --vim.g.nord_contrast = true
-            --vim.g.nord_italic = true
-            --vim.g.nord_uniform_diff_background = false
+            --add config here
         end
     },
     {
