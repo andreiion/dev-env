@@ -18,6 +18,8 @@ return {
       -- C-k: Toggle signature help (if signature.enabled = true)
       --
       -- See :h blink-cmp-config-keymap for defining your own keymap
+      --
+      -- Add `winblend` to completion for reduced opacity. e.g. menu = { winblend = 10 }
       keymap = {
         preset = "default",
       },
@@ -31,9 +33,18 @@ return {
         accept = {
           auto_brackets = { enabled = false },
         },
+        menu = {
+          -- completions on top makes it difficult to look at above lines
+          direction_priority = {'s', 'n'}
+        }
       },
       signature = {
         enabled = true,
+        window = {
+          -- signatures on top makes it difficult to look at above lines
+          direction_priority = {'s', 'n'},
+          --winblend = 10,
+        }
       },
     })
   end,

@@ -4,7 +4,7 @@ return {
   dependencies = {
     "nvim-lua/plenary.nvim",
     --"BurntSushi/ripgrep", --required for live_grep and grep_string and is the first priority for find_files
-    "sharkdp/fd", --finder
+    "sharkdp/fd",
     -- optional but recommended
     { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
   },

@@ -23,14 +23,15 @@ vim.api.nvim_create_autocmd("LspAttach", {
     keymap.set("n", "gr", builtin.lsp_references, opts)
     keymap.set("n", "K", lsp.buf.hover, opts)
 
+    -- can set anchor_bias = "below" for signature help
     keymap.set("i", "<C-h>", lsp.buf.signature_help, opts)
     keymap.set("n", "<leader>vca", lsp.buf.code_action, opts)
     keymap.set("n", "<leader>vd", vim.diagnostic.open_float, opts)
 
     --TODO: look into these shortcuts and learn them as we go
-    --       keymap.set("n", "<leader>vrr", function() lsp.buf.references() end, opts)
-    --       keymap.set("n", "<leader>vws", function() lsp.buf.workspace_symbol() end, opts)
-    --       keymap.set("n", "<leader>vrn", function() lsp.buf.rename() end, opts)
+    -- keymap.set("n", "<leader>vrr", function() lsp.buf.references() end, opts)
+    -- keymap.set("n", "<leader>vws", function() lsp.buf.workspace_symbol() end, opts)
+    -- keymap.set("n", "<leader>vrn", function() lsp.buf.rename() end, opts)
   end
 })
 
@@ -39,6 +40,7 @@ vim.diagnostic.config({
   virtual_text = {
     current_line = true,
   },
+  update_in_insert = false,
   signs = {
     text = {
       [severity.ERROR] = " ",
@@ -60,4 +62,5 @@ vim.api.nvim_create_autocmd( 'FileType', {
 
 -- remove the #ifdef greyout while keeping all navigation
 vim.api.nvim_set_hl(0, "@lsp.type.comment.c", {})
+
 

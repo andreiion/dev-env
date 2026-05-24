@@ -16,6 +16,7 @@ opt.expandtab = true -- when expandtab is set => tab = x spaces
 opt.smartindent = true
 
 opt.formatoptions:remove "o" --don't let `o` add a comment
+opt.iskeyword:append("-") -- treat words separated by - as one word
 
 opt.colorcolumn = "80"
 opt.signcolumn = "yes" -- reserves signcolumn, so error icons can appear without pushing the buffer text sideways
@@ -37,13 +38,14 @@ opt.listchars = {
   precedes = "«",
 }
 
+-- file settings
 opt.swapfile = false
 opt.backup = false
 opt.undodir = os.getenv("HOME") .. "/.vim/undodir"
 opt.undofile = true -- save undo history to an undo file
 opt.updatetime = 50 -- save swap file after 50msec if nothing is typed
 
--- Search settings
+-- search settings
 opt.hlsearch = false
 opt.incsearch = true
 opt.smartcase = true
