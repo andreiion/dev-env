@@ -14,6 +14,8 @@ opt.softtabstop = 4
 opt.shiftwidth = 4
 opt.expandtab = true -- when expandtab is set => tab = x spaces
 opt.smartindent = true
+opt.cursorline = true
+opt.cursorlineopt = "number"
 
 opt.formatoptions:remove "o" --don't let `o` add a comment
 opt.iskeyword:append("-") -- treat words separated by - as one word

@@ -20,6 +20,8 @@ return {
         diagnostic = { initial_mode = "normal"},
       }
     })
+    --TODO: look into "smart_history" and "ui-select" telescope plugins
+    telescope.load_extension("fzf")
 
     local builtin = require("telescope.builtin")
     local keymap = vim.keymap

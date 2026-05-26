@@ -7,7 +7,6 @@ vim.g.mapleader = " "
 local keymap = vim.keymap -- for conciseness
 
 keymap.set("n", "<leader>pv", vim.cmd.Ex)
-keymap.set("n", "<leader>pv", vim.cmd.Ex)
 
 -- word search and replace in file, case insensitive.
 keymap.set("n", "<leader>s", [[:%s#\<<C-r><C-w>\>#<C-r><C-w>#gI<Left><Left><Left>]])
@@ -22,10 +21,6 @@ keymap.set("v", "K", ":m '<-2<CR>gv=gv")
 
 -- give exec rights directly from neovim
 vim.keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true })
-
--- Move up and down lines, in visual mode
-keymap.set("v", "J", "<cmd>m '>+1<CR>gv=gv")
-keymap.set("v", "K", "<cmd>m '<-2<CR>gv=gv")
 
 -- Paste over selected section without losing the buffer
 keymap.set("x", "<leader>p", [["_dP]])
