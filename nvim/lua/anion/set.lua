@@ -65,7 +65,6 @@ vim.api.nvim_create_autocmd("BufWritePre", {
 
 -- clipboard
 vim.g.clipboard = "osc52" -- use system clipboard as default register
-opt.clipboard:append("unnamedplus")
 
 vim.g.loaded_python3_provider = 0
 vim.g.loaded_ruby_provider = 0
