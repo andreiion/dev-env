@@ -31,9 +31,10 @@ rm -rf nvim-linux-x86_64.tar.gz
 # TODO list
 - [ ] Highlight word under cursor in file
 - [ ] Change colors dynamically in neovim
-- [ ] Add a file navigator - look for files in specific folder of project
+- [x] Add a file navigator - look for files in specific folder of project
 - [ ] look for symbol and filter over specific files (any order)
 - [ ] highlight/bold/color current searched word
-- [ ] add DAP for c and python
-- [ ] add autoformat for C
+- [ ] add DAP for C and python
+- [ ] add autoformat for C (look at conform.nvim)
 - [ ] add autoformat for Python
+- [ ] integrate shellcheck and shfmt in neovim. Follow google shell style
