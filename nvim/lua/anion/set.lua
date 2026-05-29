@@ -14,6 +14,10 @@ opt.softtabstop = 4
 opt.shiftwidth = 4
 opt.expandtab = true -- when expandtab is set => tab = x spaces
 opt.smartindent = true
+
+opt.preserveindent = true
+opt.copyindent = true
+
 opt.cursorline = true
 opt.cursorlineopt = "number"
 
