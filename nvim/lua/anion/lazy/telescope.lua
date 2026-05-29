@@ -36,6 +36,10 @@ return {
     keymap.set("n", "<leader>fc", builtin.grep_string, { desc = "Find str under cursor in cwd" })
     keymap.set("n", "<space>/", builtin.current_buffer_fuzzy_find, {})
     keymap.set("n", "<C-p>", builtin.git_files, {})
+
+    keymap.set("n", "<space>fa", function()
+      builtin.find_files { cwd = vim.fn.stdpath "config" }
+    end)
   end,
   }
     -- keymap.set("n", "<leader>fg", function()
