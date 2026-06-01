@@ -25,7 +25,7 @@ return {
 
     local builtin = require("telescope.builtin")
     local keymap = vim.keymap
-    keymap.set("n", "<leader>ff", builtin.find_files, {desc = "Grep Project"})
+    keymap.set("n", "<leader>ff", builtin.find_files, {desc = "Find files in Project"})
     keymap.set("n", "<leader>fg", builtin.live_grep, {desc = ""})
     keymap.set("n", "<leader>fb", builtin.buffers, {desc = "Grep Project"})
     keymap.set("n", "<leader>fh", builtin.help_tags, {desc = "Help"})
@@ -34,12 +34,15 @@ return {
     keymap.set("n", "<leader>fo", builtin.oldfiles, {desc = "Recent files"})
     keymap.set("n", "<leader>fr", builtin.resume, { desc = "Resume Telescope" })
     keymap.set("n", "<leader>fc", builtin.grep_string, { desc = "Find str under cursor in cwd" })
-    keymap.set("n", "<space>/", builtin.current_buffer_fuzzy_find, {})
-    keymap.set("n", "<C-p>", builtin.git_files, {})
+    keymap.set("n", "<space>/", builtin.current_buffer_fuzzy_find, { desc = "Find in current buffer" })
+    keymap.set("n", "<C-p>", builtin.git_files, { desc = "Find in git files" })
 
-    keymap.set("n", "<space>fa", function()
-      builtin.find_files { cwd = vim.fn.stdpath "config" }
-    end)
+    keymap.set("n", "<space>fsg", function()
+      builtin.live_grep { cwd = vim.fn.stdpath("config") }
+    end, { desc = "Find in neovim files" })
+    keymap.set("n", "<space>fsf", function()
+      builtin.find_files { cwd = vim.fn.stdpath("config") }
+    end, { desc = "Find in neovim files" })
   end,
   }
     -- keymap.set("n", "<leader>fg", function()
