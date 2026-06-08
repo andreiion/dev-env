@@ -13,14 +13,17 @@ keymap.set("n", "<leader>s", [[:%s#\<<C-r><C-w>\>#<C-r><C-w>#gI<Left><Left><Left
 keymap.set("v", "<leader>s", [["sy:%s#<C-r>"#<C-r>"#gI<Left><Left><Left>]])
 
 -- give exec rights directly from neovim
-vim.keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true })
+-- vim.keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true })
+
+-- run current open lua script
+vim.keymap.set("n", "<leader>x", "<cmd>!lua %<CR>", { silent = true })
 
 -- Move up and down lines, in visual mode
 keymap.set("v", "J", ":m '>+1<CR>gv=gv")
 keymap.set("v", "K", ":m '<-2<CR>gv=gv")
 
 -- give exec rights directly from neovim
-vim.keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true })
+-- vim.keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true })
 
 -- Paste over selected section without losing the buffer
 keymap.set("x", "<leader>p", [["_dP]])
