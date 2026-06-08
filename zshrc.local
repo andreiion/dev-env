@@ -1,13 +1,15 @@
 # Only run in interactive shells
 [[ $- != *i* ]] && return
 
+# Place local config here, for all interactive shells
+alias vim="nvim"
+export MANPAGER='nvim +Man!'
+
 # Do not start tmux inside tmux
 [[ -n "$TMUX" ]] && return
 
 # Do not start tmux on remote machines
 [[ -n "$SSH_TTY" ]] && return
-
-alias vim="nvim"
 
 # Start or attach to a persistent session
 if command -v tmux >/dev/null 2>&1; then
