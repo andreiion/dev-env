@@ -5,6 +5,11 @@
 alias vim="nvim"
 export MANPAGER='nvim +Man!'
 
+setopt EXTENDED_HISTORY       # write timestamps
+setopt HIST_IGNORE_ALL_DUPS   # remove older duplicates
+setopt SHARE_HISTORY          # across open shells
+setopt HIST_REDUCE_BLANKS     # rm deundant whitespace before storing
+
 # Do not start tmux inside tmux
 [[ -n "$TMUX" ]] && return
 

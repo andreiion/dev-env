@@ -3,6 +3,7 @@
 ln -s ~/dev-env/nvim/ ~/.config/
 ln -s ~/dev-env/tmux.conf ~/.tmux.conf
 ln -s ~/dev-env/gitconfig ~/.gitconfig
+ln -s ~/dev-env/ghostty-config ~/.config/ghostty/config
 
 append_if_missing() {
     local line="$1"
