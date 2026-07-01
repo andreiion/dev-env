@@ -39,7 +39,7 @@ function add_to_path() {
             return 0 ;;
     esac
 
-    printf '\nexport PATH="$PATH:%s\n' "${dir}" >> "${rc_file}"
+    printf '\nexport PATH="$PATH:%s"\n' "${dir}" >> "${rc_file}"
     echo "Added ${dir} to PATH in ${rc_file}. source rc file to take effect."
 }
 
@@ -64,7 +64,6 @@ function neovim_install_stable() {
         200)
             sudo rm -rf /opt/nvim-linux-x86_64
             sudo tar -xzf nvim-linux-x86_64.tar.gz -C /opt
-            add_to_path "/opt/nvim-linux-x86_64/bin"
 
             rm -rf nvim-${neovim_arch}.tar.gz
             echo "Done installing neovim."
@@ -82,6 +81,10 @@ function neovim_install_stable() {
 
 function main() {
 
+    append_if_missing "source $HOME/dev-env/zshrc.local" "$HOME/.zshrc"
+    add_to_path "/opt/nvim-linux-x86_64/bin"
+    neovim_install_stable
+
     echo "Creating symlinks for config files."
     for app in "${PROJECT_PATH}"/dot-config/*; do
         app_basename=$(basename "${app}")
@@ -94,10 +97,6 @@ function main() {
             echo "Link for ${app} already exists."
         fi
     done
-
-    append_if_missing "source $HOME/dev-env/zshrc.local" "$HOME/.zshrc"
-
-    neovim_install_stable
 
     echo "Dev environment config done."
 }
