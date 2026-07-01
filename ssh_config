@@ -1,0 +1,57 @@
+
+
+#############################################################
+# Nearby interactive host (e.g. your local VM)
+# Low latency LAN: no compression, drop straight into tmux.
+#############################################################
+Host vm
+    HostName 192.168.1.1
+    User andrei
+
+    ForwardAgent yes
+
+#############################################################
+# Profile B — far / higher-latency host (e.g. build server)
+# WAN link: compression on, tighter keepalive, nvim socket forward.
+#############################################################
+Host build
+    HostName build.example.com
+    User andrei
+
+    Compression yes # Helps on slow links: faster editing, smaller logs.
+
+    ServerAliveInterval 30 # More frequent keepalives
+
+    ForwardAgent yes
+
+    # Optional: auto-attach tmux
+    # RequestTTY yes
+    # RemoteCommand tmux new-session -A -s main
+
+
+#############################################################
+# Global defaults — applied to every host. Keep this last.
+#############################################################
+Host *
+    # Keep idle connections alive
+    ServerAliveInterval 60
+    ServerAliveCountMax 3
+
+    # When host unreachable, fail instead of hanging
+    ConnectTimeout 10
+
+    # Unlock a key once: it's added to the agent the first time it's used.
+    AddKeysToAgent yes
+
+    # Prevent "Too many authentication failures" error when the agent holds many keys.
+    IdentitiesOnly yes
+
+    VisualHostKey yes
+
+    # ---- Connection multiplexing (not supported on Windows OpenSSH) ----
+    # The first connection opens a master socket; later sessions to the same
+    # host reuse it and open almost instantly. Run once: mkdir -p ~/.ssh/sockets
+    # %C is a short hash of host/port/user, avoiding "path too long" socket errors.
+    # ControlMaster auto
+    # ControlPath ~/.ssh/sockets/%C
+    # ControlPersist 10m

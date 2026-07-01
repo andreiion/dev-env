@@ -1,11 +1,22 @@
 #!/bin/bash
 
-ln -s ~/dev-env/nvim/ ~/.config/
-ln -s ~/dev-env/tmux.conf ~/.tmux.conf
-ln -s ~/dev-env/gitconfig ~/.gitconfig
-ln -s ~/dev-env/ghostty-config ~/.config/ghostty/config
+#Disclaimer: This script replaces any default configuration for:
+#nvim, tmux, ghostty, git. Make sure you understand that before proceeding.
 
-append_if_missing() {
+set -euo pipefail
+
+PROJECT_PATH="$(cd "$(dirname "$0")" && pwd)"
+
+function create_backup() {
+    local app_basename="$1"
+
+    if [[ -d ~/.config/${app_basename} ]]; then
+        echo "${app_basename} directory already exists. Creating backup."
+        mv ~/.config/"${app_basename}" ~/.config/"${app_basename}".bkup
+    fi
+}
+
+function append_if_missing() {
     local line="$1"
     local file="$2"
 
@@ -16,28 +27,79 @@ append_if_missing() {
     else
         echo "$line config already set in $file"
     fi
-
 }
 
-neovim_install_stable ()
-{
-    #TODO: Use nicer  method to detect arch. For example:
-    #os="$(uname -s)"
-    #arch="$(uname -m)"
-    echo "Installing neovim stable"
+function add_to_path() {
+    local dir="$1"
+    local rc_file="$HOME/.zshrc"
+
+    case ":$PATH:" in
+        *":${dir}:"*)
+            echo "${dir} already in PATH. Do nothing."
+            return 0 ;;
+    esac
+
+    printf '\nexport PATH="$PATH:%s\n' "${dir}" >> "${rc_file}"
+    echo "Added ${dir} to PATH in ${rc_file}. source rc file to take effect."
+}
+
+function neovim_install_stable() {
     local neovim_arch="linux-x86_64"
-    echo "Downloading neovim for $neovim_arch"
-    curl -LO https://github.com/neovim/neovim/releases/download/stable/nvim-$neovim_arch.tar.gz
-    sudo rm -rf /opt/nvim-linux-x86_64
-    sudo tar -C /opt -xzf nvim-linux-x86_64.tar.gz
-    export PATH="$PATH:/opt/nvim-linux-x86_64/bin"
-    echo "Remove archive"
-    rm -rf nvim-$neovim_arch.tar.gz
+    local neovim_release_url="https://github.com/neovim/neovim/releases/download/stable/nvim-${neovim_arch}.tar.gz"
+    local etag="$HOME/.cache/dev-env/nvim-${neovim_arch}.etag"
+
+    mkdir -p "$(dirname "${etag}")"
+
+    echo "Installing neovim stable."
+    echo "Downloading neovim for ${neovim_arch}"
+
+    response_code=$(curl \
+        --progress-bar -fL \
+        --etag-compare "${etag}" \
+        --etag-save "${etag}" \
+        -O "${neovim_release_url}" \
+        -w "%{response_code}")
+
+    case "${response_code}" in
+        200)
+            sudo rm -rf /opt/nvim-linux-x86_64
+            sudo tar -xzf nvim-linux-x86_64.tar.gz -C /opt
+            add_to_path "/opt/nvim-linux-x86_64/bin"
+
+            rm -rf nvim-${neovim_arch}.tar.gz
+            echo "Done installing neovim."
+            ;;
+        304)
+            echo "Neovim already on latest stable. Nothing to do."
+            return 0
+            ;;
+        *)
+            echo "Unexpected status ${response_code}" >&2
+            return 1
+            ;;
+    esac
 }
 
-append_if_missing "source $HOME/dev-env/zshrc.local" "$HOME/.zshrc"
-append_if_missing "export PATH=\"$PATH:/opt/nvim-linux-x86_64/bin\"" "$HOME/.zshrc"
+function main() {
 
-neovim_install_stable
+    echo "Creating symlinks for config files."
+    for app in "${PROJECT_PATH}"/dot-config/*; do
+        app_basename=$(basename "${app}")
 
+        if ! [[ -h ~/.config/$(basename "${app}") ]]; then
+            echo "Create symlink for ${app_basename}."
+            create_backup "${app_basename}"
+            ln -s "${app}" ~/.config/
+        else
+            echo "Link for ${app} already exists."
+        fi
+    done
 
+    append_if_missing "source $HOME/dev-env/zshrc.local" "$HOME/.zshrc"
+
+    neovim_install_stable
+
+    echo "Dev environment config done."
+}
+
+main "$@"

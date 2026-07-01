@@ -35,6 +35,9 @@ rm -rf nvim-linux-x86_64.tar.gz
 - [ ] look for symbol and filter over specific files (any order)
 - [ ] highlight/bold/color current searched word
 - [ ] add DAP for C and python
-- [ ] add autoformat for C (look at conform.nvim)
+- [ ] add autoformat for C and format on save (look at conform.nvim)
 - [ ] add autoformat for Python
 - [ ] integrate shellcheck and shfmt in neovim. Follow google shell style
+- [ ] have a generic way to detect arch for neovim installation in setup script
+    - something with: os="$(uname -s) arch="$(uname -m)"
+

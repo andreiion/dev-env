@@ -1,6 +1,10 @@
 # Only run in interactive shells
 [[ $- != *i* ]] && return
 
+# Some remotes don't have these set
+export LANG=en_US.UTF-8
+export LC_ALL=en_US.UTF-8
+
 # Place local config here, for all interactive shells
 alias vim="nvim"
 export MANPAGER='nvim +Man!'
@@ -14,7 +18,7 @@ setopt HIST_REDUCE_BLANKS     # rm deundant whitespace before storing
 [[ -n "$TMUX" ]] && return
 
 # Do not start tmux on remote machines
-[[ -n "$SSH_TTY" ]] && return
+#[[ -n "$SSH_TTY" ]] && return
 
 # Start or attach to a persistent session
 if command -v tmux >/dev/null 2>&1; then
