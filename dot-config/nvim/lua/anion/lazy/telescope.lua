@@ -44,8 +44,8 @@ return {
       builtin.find_files { cwd = vim.fn.stdpath("config") }
     end, { desc = "Find in neovim files" })
   end,
-  }
-    -- keymap.set("n", "<leader>fg", function()
-      --     builtin.grep_string({ search = vim.fn.input("Grep > ") });
-      -- end) --project search
+}
+-- keymap.set("n", "<leader>fg", function()
+  --     builtin.grep_string({ search = vim.fn.input("Grep > ") });
+  -- end) --project search
 
