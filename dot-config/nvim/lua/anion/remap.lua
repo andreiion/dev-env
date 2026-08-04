@@ -50,6 +50,3 @@ keymap.set("t", "<Esc>", "<C-\\><C-n>")
 -- Tab controls
 keymap.set("", "<leader><Tab>", ":tabnext<CR>")
 keymap.set("", "<leader><S-Tab>", ":tabprevious<CR>")
-
-
-

@@ -14,19 +14,22 @@ lsp.enable("clangd")
 vim.api.nvim_create_autocmd("LspAttach", {
   callback = function(ev)
     -- See `:help lsp.*` for documentation on any of the below functions
-    local opts = { buffer = ev.buf, silent = true}
+    local opts = { buffer = ev.buf, silent = true }
 
+    local client = assert(vim.lsp.get_client_by_id(ev.data.client_id))
     local builtin = require("telescope.builtin")
     keymap.set("n", "gd", lsp.buf.definition, opts)
     keymap.set("n", "gD", lsp.buf.declaration, opts)
     keymap.set("n", "gT", builtin.lsp_type_definitions, opts)
     keymap.set("n", "gr", builtin.lsp_references, opts)
-    keymap.set("n", "K", lsp.buf.hover, opts)
+    -- K is mapped to hover by default
+    -- keymap.set("n", "K", lsp.buf.hover, opts)
 
     -- can set anchor_bias = "below" for signature help
     keymap.set("i", "<C-h>", lsp.buf.signature_help, opts)
     keymap.set("n", "<leader>vca", lsp.buf.code_action, opts)
     keymap.set("n", "<leader>vd", vim.diagnostic.open_float, opts)
+    keymap.set("n", "<leader>1", vim.lsp.buf.format, opts)
 
     --TODO: look into these shortcuts and learn them as we go
     -- keymap.set("n", "<leader>vrr", function() lsp.buf.references() end, opts)
@@ -51,7 +54,7 @@ vim.diagnostic.config({
   },
 })
 
-vim.api.nvim_create_autocmd( 'FileType', {
+vim.api.nvim_create_autocmd("FileType", {
   callback = function(ev)
     local ok = pcall(vim.treesitter.start, ev.buf)
     if not ok then
@@ -62,5 +65,3 @@ vim.api.nvim_create_autocmd( 'FileType', {
 
 -- remove the #ifdef greyout while keeping all navigation
 vim.api.nvim_set_hl(0, "@lsp.type.comment.c", {})
-
-

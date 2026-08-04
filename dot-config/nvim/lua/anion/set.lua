@@ -22,16 +22,16 @@ opt.cursorline = true
 opt.cursorlineopt = "number"
 
 opt.formatoptions:remove "o" --don't let `o` add a comment
-opt.iskeyword:append("-") -- treat words separated by - as one word
+opt.iskeyword:append("-")    -- treat words separated by - as one word
 
 opt.colorcolumn = "80"
 opt.signcolumn = "yes" -- reserves signcolumn, so error icons can appear without pushing the buffer text sideways
 
 opt.shada = {
   "'10", -- remember marks for last 10 files
-  "<0", -- disable register persistence
+  "<0",  -- disable register persistence
   "s10", -- skip registers larger than 10KB
-  "h"   -- disabled restoring search highlight on startup
+  "h"    -- disabled restoring search highlight on startup
 }
 
 -- Mark tabs and spaces

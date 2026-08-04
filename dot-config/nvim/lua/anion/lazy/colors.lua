@@ -33,12 +33,12 @@ return {
     lazy = false,
     config = function()
       require("tokyonight").setup({
-        style = "moon", -- The theme comes in three styles, `storm`, `moon`, a darker variant `night` and `day`
+        style = "moon",         -- The theme comes in three styles, `storm`, `moon`, a darker variant `night` and `day`
         terminal_colors = true, -- Configure the colors used when opening a `:terminal` in Neovim
         styles = {
           -- Background styles. Can be "dark", "transparent" or "normal"
           sidebars = "dark", -- style for sidebars, see below
-          floats = "dark", -- style for floating windows
+          floats = "dark",   -- style for floating windows
         },
       })
       --          local color = "tokyonight"

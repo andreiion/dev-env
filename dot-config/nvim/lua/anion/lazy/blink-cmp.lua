@@ -35,14 +35,14 @@ return {
         },
         menu = {
           -- completions on top makes it difficult to look at above lines
-          direction_priority = {'s', 'n'}
+          direction_priority = { "s", "n" }
         }
       },
       signature = {
         enabled = true,
         window = {
           -- signatures on top makes it difficult to look at above lines
-          direction_priority = {'s', 'n'},
+          direction_priority = { "s", "n" },
           --winblend = 10,
         }
       },

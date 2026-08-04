@@ -15,5 +15,3 @@ vim.api.nvim_create_autocmd("FileType", {
     keymap.set("n", "t", "<C-w><CR><C-w>T", { buffer = true, silent = true })
   end,
 })
-
-

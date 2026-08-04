@@ -14,10 +14,10 @@ return {
     telescope.setup({
       pickers = {
         -- open lsp pickers in normal mode, no need for input when searching symbols
-        lsp_document_symbols = { initial_mode = "normal"},
-        lsp_type_definitions = { initial_mode = "normal"},
-        lsp_references = { initial_mode = "normal"},
-        diagnostic = { initial_mode = "normal"},
+        lsp_document_symbols = { initial_mode = "normal" },
+        lsp_type_definitions = { initial_mode = "normal" },
+        lsp_references = { initial_mode = "normal" },
+        diagnostic = { initial_mode = "normal" },
       }
     })
     --TODO: look into "smart_history" and "ui-select" telescope plugins
@@ -25,13 +25,13 @@ return {
 
     local builtin = require("telescope.builtin")
     local keymap = vim.keymap
-    keymap.set("n", "<leader>ff", builtin.find_files, {desc = "Find files in Project"})
-    keymap.set("n", "<leader>fg", builtin.live_grep, {desc = ""})
-    keymap.set("n", "<leader>fb", builtin.buffers, {desc = "Grep Project"})
-    keymap.set("n", "<leader>fh", builtin.help_tags, {desc = "Help"})
-    keymap.set("n", "<leader>fs", builtin.lsp_document_symbols, {desc = "Symbols"})
-    keymap.set("n", "<leader>fd", builtin.diagnostics, {desc = "Diagnostics"})
-    keymap.set("n", "<leader>fo", builtin.oldfiles, {desc = "Recent files"})
+    keymap.set("n", "<leader>ff", builtin.find_files, { desc = "Find files in Project" })
+    keymap.set("n", "<leader>fg", builtin.live_grep, { desc = "" })
+    keymap.set("n", "<leader>fb", builtin.buffers, { desc = "Grep Project" })
+    keymap.set("n", "<leader>fh", builtin.help_tags, { desc = "Help" })
+    keymap.set("n", "<leader>fs", builtin.lsp_document_symbols, { desc = "Symbols" })
+    keymap.set("n", "<leader>fd", builtin.diagnostics, { desc = "Diagnostics" })
+    keymap.set("n", "<leader>fo", builtin.oldfiles, { desc = "Recent files" })
     keymap.set("n", "<leader>fr", builtin.resume, { desc = "Resume Telescope" })
     keymap.set("n", "<leader>fc", builtin.grep_string, { desc = "Find str under cursor in cwd" })
     keymap.set("n", "<space>/", builtin.current_buffer_fuzzy_find, { desc = "Find in current buffer" })
@@ -46,6 +46,5 @@ return {
   end,
 }
 -- keymap.set("n", "<leader>fg", function()
-  --     builtin.grep_string({ search = vim.fn.input("Grep > ") });
-  -- end) --project search
-
+--     builtin.grep_string({ search = vim.fn.input("Grep > ") });
+-- end) --project search
