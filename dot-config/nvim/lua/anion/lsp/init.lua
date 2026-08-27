@@ -35,6 +35,21 @@ vim.api.nvim_create_autocmd("LspAttach", {
     -- keymap.set("n", "<leader>vrr", function() lsp.buf.references() end, opts)
     -- keymap.set("n", "<leader>vws", function() lsp.buf.workspace_symbol() end, opts)
     -- keymap.set("n", "<leader>vrn", function() lsp.buf.rename() end, opts)
+
+    keymap.set("n", "<leader>h", function()
+      if not client.name == "clangd" or not client:supports_method("textDocument/switchSourceHeader") then
+        vim.notify("clangd doesn't exist or method not supported")
+        return
+      end
+      local params = vim.lsp.util.make_text_document_params(ev.buf)
+      client:request("textDocument/switchSourceHeader", params, function(err, result)
+        if not err and result then
+          vim.api.nvim_command('edit ' .. vim.uri_to_fname(result))
+        else
+          vim.notify("request error", vim.log.levels.WARN)
+        end
+      end, ev.buf)
+    end, opts)
   end
 })
 

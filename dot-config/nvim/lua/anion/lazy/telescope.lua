@@ -26,6 +26,9 @@ return {
     end
 
     telescope.setup({
+      defaults = {
+        dynamic_preview_title = true, --show path into grep preview
+      },
       pickers = {
         find_files = { theme = current_theme },
         live_grep = { theme = current_theme },
@@ -40,7 +43,7 @@ return {
         -- open lsp pickers in normal mode, no need for input when searching symbols
         lsp_document_symbols = { initial_mode = "normal" },
         lsp_type_definitions = { initial_mode = "normal" },
-        lsp_references = { initial_mode = "normal" },
+        lsp_references = { initial_mode = "normal", theme = current_theme },
         diagnostic = { initial_mode = "normal" },
       }
     })
