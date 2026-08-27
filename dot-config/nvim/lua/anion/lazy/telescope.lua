@@ -11,8 +11,32 @@ return {
 
   config = function()
     local telescope = require("telescope")
+    local themes = require("telescope.themes")
+
+    --change ivy's own defaults by overriding the theme function
+    local current_theme = "ivy"
+    local original_get_ivy = themes.get_ivy
+    themes.get_ivy = function(opts)
+      opts = opts or {}
+      opts.layout_config = vim.tbl_deep_extend("force", {
+        height = 0.7,
+        preview_width = 0.5,
+      }, opts.layout_config or {})
+      return original_get_ivy(opts)
+    end
+
     telescope.setup({
       pickers = {
+        find_files = { theme = current_theme },
+        live_grep = { theme = current_theme },
+        buffers = { theme = current_theme },
+        oldfiles = { theme = current_theme },
+        current_buffer_fuzzy_find = { theme = current_theme },
+        git_files = { theme = current_theme },
+
+        grep_string = { initial_mode = "normal", theme = current_theme },
+        resume = { initial_mode = "normal", theme = current_theme },
+
         -- open lsp pickers in normal mode, no need for input when searching symbols
         lsp_document_symbols = { initial_mode = "normal" },
         lsp_type_definitions = { initial_mode = "normal" },
@@ -22,6 +46,7 @@ return {
     })
     --TODO: look into "smart_history" and "ui-select" telescope plugins
     telescope.load_extension("fzf")
+
 
     local builtin = require("telescope.builtin")
     local keymap = vim.keymap

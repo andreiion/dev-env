@@ -20,13 +20,13 @@ function append_if_missing() {
     local line="$1"
     local file="$2"
 
-    grep --line-regexp --quiet --fixed-strings "$line" "$file"
-    if [ $? -ne 0 ]; then
-        echo "Adding $line in $file"
-        printf '%s\n' "$line" >> "$file"
-    else
+    if grep --line-regexp --quiet --fixed-strings "${line}" "${file}"; then
         echo "$line config already set in $file"
+	return 0
     fi
+
+    echo "Adding $line in $file"
+    printf '%s\n' "$line" >> "$file"
 }
 
 function add_to_path() {
@@ -80,7 +80,8 @@ function neovim_install_stable() {
 }
 
 function main() {
-
+	
+    echo "Running script"
     append_if_missing "source $HOME/dev-env/zshrc.local" "$HOME/.zshrc"
     add_to_path "/opt/nvim-linux-x86_64/bin"
     neovim_install_stable
