@@ -6,6 +6,8 @@ vim.g.mapleader = " "
 
 local keymap = vim.keymap -- for conciseness
 
+keymap.set("n", "<Esc>", "<cmd>let @/=''<CR>", { silent = true })
+
 keymap.set("n", "<leader>pv", vim.cmd.Ex)
 
 -- word search and replace in file, case insensitive.

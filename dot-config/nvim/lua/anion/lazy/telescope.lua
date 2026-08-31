@@ -33,7 +33,7 @@ return {
         find_files = { theme = current_theme },
         live_grep = { theme = current_theme },
         buffers = { theme = current_theme },
-        oldfiles = { theme = current_theme },
+        oldfiles = {initial_mode = "normal", theme = current_theme },
         current_buffer_fuzzy_find = { theme = current_theme },
         git_files = { theme = current_theme },
 

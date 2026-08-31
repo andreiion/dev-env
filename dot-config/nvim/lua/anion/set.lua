@@ -52,7 +52,7 @@ opt.undofile = true -- save undo history to an undo file
 opt.updatetime = 50 -- save swap file after 50msec if nothing is typed
 
 -- search settings
-opt.hlsearch = false
+opt.hlsearch = true
 opt.incsearch = true
 opt.smartcase = true
 opt.ignorecase = true
