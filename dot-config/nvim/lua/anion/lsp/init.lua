@@ -10,6 +10,8 @@ lsp.config("pyrefly", require("anion.lsp.pyrefly"))
 lsp.enable("pyrefly")
 lsp.config("clangd", require("anion.lsp.clangd"))
 lsp.enable("clangd")
+lsp.config("neocmake", require("anion.lsp.neocmake"))
+lsp.enable("neocmake")
 
 vim.api.nvim_create_autocmd("LspAttach", {
   callback = function(ev)

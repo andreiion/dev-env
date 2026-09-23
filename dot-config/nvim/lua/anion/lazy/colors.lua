@@ -1,6 +1,5 @@
 function ColorScheme(color)
   color = color or "rose-pine-moon"
-  print("setting color", color)
   vim.cmd.colorscheme(color)
 end
 

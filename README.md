@@ -1,5 +1,9 @@
 # dev-env
 
+```bash
+
+sudo apt install locales ripgrep build-essential
+```
 
 For heavier remote editing, run Neovim as a server on the remote machine and connect from your local terminal. This keeps the editor close to the files, eliminating latency:
 ``` bash

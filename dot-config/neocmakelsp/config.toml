@@ -1,0 +1,8 @@
+enable_external_cmake_list = true
+line_max_words = 120
+
+[format]
+#Make sure to install gersemi via Mason before. Test by running `!which gersemi`
+program = "gersemi"
+# "-" tells gersemi to read from stdin and write formatted output to stdout
+args = ["--indent", "4", "-"]
